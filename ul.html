@@ -31,18 +31,15 @@
     let tagArray = ["div", "footer", "section"];
     let dataForm = dataFunc("#root", tagArray[1], "p", "hello");
 
-    // 리액트 : 한번에 묶어쓰면 안돼? 귀찮아죽것어
-    // HTML은 사실상 없다
+
     let root = dataForm.parentData;
     console.dir(root);
-    // 동적으로 ul을 만들었다
     let ul = dataForm.childrenData;
     root.appendChild(ul);
     let bb = dataForm.grandChild;
     ul.append(bb);
-    //동적으로 작성했다.
     bb.textContent = dataForm.grandChildText;
-    // root.children[0] = "hello";
+    
   </script>
 
 </body>
