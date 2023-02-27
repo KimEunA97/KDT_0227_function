@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 작성했다 -->
+  <div id="root">
+
+  </div>
+
+  <script>
+
+    // 리터럴을 걷어낸다.
+
+    function dataFunc(a, b, c, d) {
+      let obj = {
+        parentData: document.querySelector(a),
+        childrenData: document.createElement(b),
+        grandChild: document.createElement(c),
+        grandChildText: d,
+      }
+      return obj;
+    }
+
+    let tagArray = ["div", "footer", "section"];
+    let dataForm = dataFunc("#root", tagArray[1], "p", "hello");
+
+    // 리액트 : 한번에 묶어쓰면 안돼? 귀찮아죽것어
+    // HTML은 사실상 없다
+    let root = dataForm.parentData;
+    console.dir(root);
+    // 동적으로 ul을 만들었다
+    let ul = dataForm.childrenData;
+    root.appendChild(ul);
+    let bb = dataForm.grandChild;
+    ul.append(bb);
+    //동적으로 작성했다.
+    bb.textContent = dataForm.grandChildText;
+    // root.children[0] = "hello";
+  </script>
+
+</body>
+
+</html>
