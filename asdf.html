@@ -18,12 +18,10 @@
     }
   </style>
 </head>
-
 </style>
 
 <body>
   <div id="root"></div>
-
 </body>
 <script>
   //root 엘리먼트 가져오기
@@ -35,12 +33,9 @@
     circle.push(temp);
     root.appendChild(temp);
   };
-
-
-  let a = document.root;
-  console.dir(a);
-
-  // root 스타일링 
+  // let a = document.root;
+  // console.dir(a);
+  // root 스타일링
   function setRootData(w, h, bg, dis, jcnt, ali, pos) {
     let obj = {
       WIDTH: w,
@@ -51,109 +46,87 @@
       ALITEM: ali,
       POS: pos
     }
-
     return obj
   }
-
   console.dir(root);
-  
   //엘리먼트 스타일 입히기
-  function styleElement(element, elementStyle) {
-    element.style.width = elementStyle.WIDTH;
-    element.style.height = elementStyle.HEIGHT;
-    element.style.backgroundColor = elementStyle.BGCOLOR;
-    element.style.display = elementStyle.DIS;
-    element.style.justifyContent = elementStyle.JCNT;
-    element.style.alignItems = elementStyle.ALITEM;
-    element.style.position = elementStyle.POS;
+  function styleElement(element, style) {
+    element.style.width = style.WIDTH;
+    element.style.height = style.HEIGHT;
+    element.style.backgroundColor = style.BGCOLOR;
+    element.style.display = style.DIS;
+    element.style.justifyContent = style.JCNT;
+    element.style.alignItems = style.ALITEM;
+    element.style.position = style.POS;
   }
-
   // 공용 css 데이터(body, *)
-
   let rootData = setRootData("100vw", "100vh", "cadetblue", "flex", "center", "center", "relative")
   styleElement(root, rootData);
-
   console.dir(root);
-
-  function createCommonCircleStyle (wd, hdt, bo, op, ps) {
-    let lalala = {
-      wd : wdt,
-      het : hdt,
-      bora : bo,
-      opaci : op,
-      posi : ps
-    }
-    return lalala;
-  }
-
-  function CommonCircleStyling(common,style3) {
-    common.style.width = style3.wd
-    common.style.height = style3.het
-    common.style.borderradius = style3.bora
-    common.style.opacity = style3.opaci
-    common.style.position = style3.posi
-  }
-  let comCircle = createCommonCircleStyle("500px","500px","250px","0.8","absolute");
-  CommonCircleStyling(circle,comCircle);
-
-
-
-  // 마진탑,마진왼쪽,배경색,필터,가로크기,세로크기
-  function createCircleStyle (mt, ml, bg, f) {
+  // (root>div) 원 공용 css 스타일링?
+  function createCommonCircleStyle(w, h, bo, op, pos) {
     let obj = {
-      
+      WIDTH: w,
+      HEIGHT: h,
+      bordR: bo,
+      OPACI: op,
+      POS: pos
+    }
+    return obj;
+  }
+  // (root>div) 원 공용 css 스타일링 입히기
+  function styleCommonCircle(circle, style) {
+    circle.style.width = style.WIDTH;
+    circle.style.height = style.HEIGHT;
+    circle.style.borderRadius = style.bordR;
+    circle.style.opacity = style.OPACI;
+    circle.style.position = style.POS;
+  }
+  // 세개의 circle의 공용 css
+  let comCircle = createCommonCircleStyle("500px", "500px", "250px", "0.8", "absolute");
+  // console.dir(root);
+  // div세개에 css 쳐먹이기
+  for (let i = 0; i < 3; i++) {
+    styleCommonCircle(circle[i], comCircle);
+  }
+  // 마진탑,마진왼쪽,배경색,필터,가로크기,세로크기
+  function createCircleStyle(mt, ml, bg, f) {
+    let obj = {
       MT: mt,
       ML: ml,
       BG: bg,
       F: f,
-      
     }
-
     return obj;
   }
-
   //원 스타일링 하기
   function styleCircle(circle, style) {
-    
     circle.style.marginTop = style.MT
     circle.style.marginLeft = style.ML
     circle.style.backgroundColor = style.BG
     circle.style.filter = style.F
-
   }
-
-//원 스타일링
+  //원 스타일링
   let CS1 = createCircleStyle("300px", "300px", "salmon", "blur(20px)");
-
   let CS2 = createCircleStyle("50px", "-50px", "cornflowerblue", "blur(20px)");
-
   let CS3 = createCircleStyle("-100px", "50px", "coral", "blur(10px)");
-
   // 원 스타일링 함수 호출
   styleCircle(circle[0], CS1);
   styleCircle(circle[1], CS2);
   styleCircle(circle[2], CS3);
-  
-  
   let divBasic = {
     width: "500px",
     height: "500px",
     borderradius: "250px",
     opacity: "0.8",
-
-    position: absolute,
+    position: "absolute"
   }
-
-
-//클릭 이벤트 실패
+  //클릭 이벤트 '성공'
+  // console.dir(circle[2]);
   circle[2].addEventListener("click", function click() {
     circle[2].style.backgroundColor = 'red';
   });
-
-
-
-
-
+  console.dir(circle);
 </script>
 
 </html>
